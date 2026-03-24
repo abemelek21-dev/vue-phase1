@@ -1,32 +1,57 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <div>
+    <h1>{{ message }}</h1>
+    <p>{{ name }}</p>
+    <p>Count: {{ count }}</p>
+    <p>{{ countSummary }}</p>
+    <p>{{ countHistory }}</p>
+    <input v-model="firstName" />
+    <input v-model="lastName" />
+    <p>{{ fullName }}</p>
+    <button @click="changeMessage">Change Message</button>
+    <button @click="increment">Increment</button>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      message: "Hello Vue!",
+      name: "Abemelek",
+      count: 0,
+      firstName: "Abemelek",
+      lastName: "Daniel",
+      countHistory: "",
+    };
+  },
+  computed: {
+    countSummary() {
+      return `You have clicked ${this.count} time${this.count === 1 ? "" : "s"}`;
+    },
+    fullName() {
+      return `Full Name : ${this.firstName} ${this.lastName}`;
+    },
+  },
+  watch: {
+    count(newValue, oldValue) {
+      this.countHistory = `Count changed from ${oldValue} to ${newValue}`;
+    },
+    firstName(newValue) { 
+      console.log("firstName changed: ", newValue);
+    },
+    lastName(newValue) {
+      console.log("lastName changed: ", newValue);
+    },
+  },
+  methods: {
+    changeMessage() {
+      this.message = "Vue is clicking now!";
+    },
+    increment() {
+      this.count++;
+    },
+  },
+};
+</script>
