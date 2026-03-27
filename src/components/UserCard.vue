@@ -7,7 +7,7 @@
       <h3>{{ user.name }}</h3>
       <p> {{ user.email }}</p>
       <span :class="['badge', user.role.toLowerCase()]">
-        {{user.role}}
+        {{ user.role }}
       </span>
     </div>
     <button class="delete-btn" @click="handleDelete">X</button>
@@ -37,11 +37,11 @@ export default {
     },
   },
   methods: {
-    handleDelete(){
-        // $emit = child talking UP to the parent
+    handleDelete() {
+      // $emit = child talking UP to the parent
       // "Hey parent, the user clicked delete on this card"
       // The parent decides what to actually DO with that info
-        this.$emit("delete",this.user.id)
+      this.$emit("delete", this.user.id)
     }
   },
 };
@@ -58,6 +58,7 @@ export default {
   padding: 14px 16px;
   margin-bottom: 10px;
 }
+
 .avatar {
   width: 44px;
   height: 44px;
@@ -71,18 +72,44 @@ export default {
   font-size: 14px;
   flex-shrink: 0;
 }
-.info { flex: 1; }
-.info h3 { margin: 0 0 2px; font-size: 15px; }
-.info p  { margin: 0 0 6px; font-size: 13px; color: #6b7280; }
+
+.info {
+  flex: 1;
+}
+
+.info h3 {
+  margin: 0 0 2px;
+  font-size: 15px;
+}
+
+.info p {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
 .badge {
   font-size: 11px;
   padding: 2px 8px;
   border-radius: 99px;
   font-weight: 500;
 }
-.developer { background: #dbeafe; color: #1d4ed8; }
-.designer  { background: #fce7f3; color: #be185d; }
-.manager   { background: #d1fae5; color: #065f46; }
+
+.developer {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.designer {
+  background: #fce7f3;
+  color: #be185d;
+}
+
+.manager {
+  background: #d1fae5;
+  color: #065f46;
+}
+
 .delete-btn {
   background: none;
   border: none;
@@ -93,6 +120,9 @@ export default {
   border-radius: 6px;
   transition: all 0.15s;
 }
-.delete-btn:hover { background: #fee2e2; color: #ef4444; }
-</style>
 
+.delete-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+</style>
